@@ -1,88 +1,27 @@
-let me = {
-  firstName: 'Nick',
-  lastName: 'Perry'
-};
+let array = [
+  [1, 2, 3],
+  [1, 2, 3],
+  [1, 2]
+]
 
-let wife = {
-  firstName: 'Rylea',
-  lastName: 'Perry'
-};
-
-let brother = {
-  firstName: 'Vinny',
-  lastName: 'Perry'
+function transpose(array) {
+  return array[0].map((col, colIdx) => {
+    return array.map(row => row[colIdx])
+  });
 }
 
-let friend = {
-  firstName: 'Blake',
-  lastName: 'Tabian'
-}
+array = transpose(array);
 
-let people = {
-  collection: [me, wife, brother],
+console.log(array);
 
-  lastIndexUsed: function() {
-    return this.collection.length - 1;
-  },
-
-  fullName(person) {
-    console.log(person.firstName + ' ' + person.lastName);
-  },
-
-  rollCall() {
-    this.collection.forEach(this.fullName);
-  },
-
-  getIndex: function(person) {
-    let index = -1;
-    this.collection.forEach(function(comparator, i) {
-      if (comparator.firstName === person.firstName &&
-          comparator.lastName === person.lastName) {
-        index = i;
-      }
-    })
-
-    return index
-  },
-
-  add: function add(person) {
-    if (this.isInvalidPerson(person)) return;
-  
-    this.collection.push(person)
-  },
-
-  remove: function remove(person) {
-    let index = this.getIndex(person);
-  
-    if (this.isInvalidPerson(person)) return;
-    if (index === -1) return;
-  
-    this.collection.splice(index, 1);
-  },
-
-  isInvalidPerson: function(person) {
-    return typeof person.firstName !== 'string' || typeof person.lastName !== 'string';
-  },
-
-  get: function(person) {
-    if (this.isInvalidPerson(person)) {
-      return;
-    }
-
-    return this.collection[this.getIndex(person)];
-  },
-
-  update: function(person) {
-    if (this.isInvalidPerson) return;
-  
-    let existingPersonId = this.getIndex(person);
-    if (existingPersonId === -1) {
-      this.add(person);
+array.forEach((subarr, idx) => {
+  array[idx] = subarr.map(item => {
+    if (item) {
+      return item;
     } else {
-      this.collection[existingPersonId] = person;
+      return 0;
     }
-  }
-}
+  })
+});
 
-me.occupation = 'Software Engineer';
-console.log(people.collection);
+console.log(array);

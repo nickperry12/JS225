@@ -122,14 +122,50 @@ const school = {
         }
       });
     })
+  },
+
+  // This method needs to log the name of the course, followed by the name of
+  // the student and their grade in that course, and the average score for that
+  // course in the following format: 
+  // =Course=
+  // Name: Score
+  // ---
+  // Course Average: Average
+  courseReport(courseName) {
+    let studentsAndGrades = [];
+    let scores = [];
+
+    this.students.forEach(student => {
+      let name = student.name;
+      student.courses.forEach(course => {
+        let grade = course.grade;
+        
+        if (course.name === courseName && course.grade) {
+          studentsAndGrades.push(`${name}: ${grade}`);
+          scores.push(grade);
+        }
+      })
+    })
+
+    let average = scores.reduce((accum, current) => accum + current) / scores.length;
+  
+    let output = `==${courseName}==\n` + 
+                 `${studentsAndGrades.join('\n')}\n` +
+                 '---\n' +
+                 `Course Average: ${average}`;
+
+    console.log(output);
   }
 }
 
 school.addStudent('Nick', '2nd');
 school.enrollStudent('Nick', { name: 'Object-Oriented JavaScript', code: 225 });
 school.enrollStudent('Nick', { name: 'Computational Thinking and Problem Solving', code: 216 });
-school.addGrade('Nick', 225, 'A+');
-school.addGrade('Nick', 216, 'A');
+school.addGrade('Nick', 225, 96);
+school.addGrade('Nick', 216, 97);
 school.addStudent('AJ', '2nd');
 school.enrollStudent('AJ', { name: 'Computational Thinking and Problem Solving', code: 216 });
+school.enrollStudent('AJ', { name: 'Object-Oriented JavaScript', code: 216 });
+school.addGrade('AJ', 216, 99);
 school.getReportCard();
+school.courseReport('Computational Thinking and Problem Solving');
