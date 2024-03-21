@@ -124,13 +124,6 @@ const school = {
     })
   },
 
-  // This method needs to log the name of the course, followed by the name of
-  // the student and their grade in that course, and the average score for that
-  // course in the following format: 
-  // =Course=
-  // Name: Score
-  // ---
-  // Course Average: Average
   courseReport(courseName) {
     let studentsAndGrades = [];
     let scores = [];
