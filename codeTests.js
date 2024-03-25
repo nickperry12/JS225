@@ -1,15 +1,14 @@
-let Foo = function() {
-  this.a = 'hello';
-  this.b = 'goodbye';
+let ninja;
+function Ninja() {
+  this.swung = true;
 }
 
-let bar = new Foo();
+ninja = new Ninja();
 
-console.log(bar);
-Foo.prototype.speak = function() {
-  console.log('hello');
-}
-let qux = new Foo();
+Ninja.prototype = {
+  swingSword: function() {
+    return this.swung;
+  },
+};
 
-bar.speak();
-qux.speak();
+console.log(ninja.swingSword());
