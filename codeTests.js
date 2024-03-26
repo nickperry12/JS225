@@ -1,14 +1,15 @@
-let ninja;
-function Ninja() {
-  this.swung = true;
+function Dog(name, weight, breed) {
+  this.name = name;
+  this.weight = weight;
+  this.breed = breed;
+  this.bark =  function() {
+    console.log('Woof');
+  }
 }
 
-ninja = new Ninja();
+Dog.prototype.whine = function() {
+  console.log('Whimpers!');
+}
 
-Ninja.prototype = {
-  swingSword: function() {
-    return this.swung;
-  },
-};
-
-console.log(ninja.swingSword());
+let maxi = Dog('Maxi', 32, 'Yorkie');
+console.log(maxi);
